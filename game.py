@@ -10,10 +10,10 @@ pygame.init()
 # Set up display
 width, height = 800, 600
 screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Shoot the Enemy")
+pygame.display.set_caption("Space Cats")
 
 # Set up background image
-background_image = pygame.image.load("C:\\Users\\elena_0\\Desktop\\Joc Python\\photo.jpg")  # Replace with the path to your image
+background_image = pygame.image.load("photo.jpg")  # Replace with the path to your image
 background_image = pygame.transform.scale(background_image, (width, height))
 
 # Set up colors
@@ -23,23 +23,32 @@ red = (255, 0, 0)
 
 # Set up the player icon (PNG image)
 player_size = 50
-player_icon = pygame.image.load("C:\\Users\\elena_0\\Desktop\\Joc Python\\rocket.png")  # Replace with the path to your PNG image
+player_icon = pygame.image.load("rocket.png")  # Replace with the path to your PNG image
 player_icon = pygame.transform.scale(player_icon, (player_size, player_size))
 
 # Set up the bullet icons (PNG images)
 bullet_size = (20, 20)  # Set the desired size for the bullet images
 bullet_icons = [
-    pygame.image.load("C:\\Users\\elena_0\\Desktop\\Joc Python\\cat1.png"),  # Replace with the path to your PNG image
-    pygame.image.load("C:\\Users\\elena_0\\Desktop\\Joc Python\\cat2.png"),  # Replace with the path to your PNG image
-    pygame.image.load("C:\\Users\\elena_0\\Desktop\\Joc Python\\cat3.png"),  # Replace with the path to your PNG image
-    pygame.image.load("C:\\Users\\elena_0\\Desktop\\Joc Python\\cat4.png"),  # Replace with the path to your PNG image
-    pygame.image.load("C:\\Users\\elena_0\\Desktop\\Joc Python\\cat5.png"),  # Replace with the path to your PNG image
-    pygame.image.load("C:\\Users\\elena_0\\Desktop\\Joc Python\\cat6.png"),  # Replace with the path to your PNG image
+    pygame.image.load("cat1.png"),  # Replace with the path to your PNG image
+    pygame.image.load("cat2.png"),  # Replace with the path to your PNG image
+    pygame.image.load("cat3.png"),  # Replace with the path to your PNG image
+    pygame.image.load("cat4.png"),  # Replace with the path to your PNG image
+    pygame.image.load("cat5.png"),  # Replace with the path to your PNG image
+    pygame.image.load("cat6.png"),  # Replace with the path to your PNG image
     # Add more paths as needed
 ]
 
 # Scale down the bullet images
 bullet_icons = [pygame.transform.scale(bullet, bullet_size) for bullet in bullet_icons]
+
+# Initialize Pygame mixer
+pygame.mixer.init()
+
+# Load and play the MP3 file
+mp3_file_path = "music.mp3"  # Replace with the path to your MP3 file
+pygame.mixer.music.load(mp3_file_path)
+pygame.mixer.music.play(-1)  # -1 means loop indefinitely
+
 
 # Set up the player
 player_x = width // 2 - player_size // 2
@@ -51,7 +60,7 @@ bullets = []
 
 # Set up the enemy icon (PNG image)
 enemy_size = 45
-enemy_icon = pygame.image.load("C:\\Users\\elena_0\\Desktop\\Joc Python\\asteroid.png")  # Replace with the path to your PNG image
+enemy_icon = pygame.image.load("asteroid.png")  # Replace with the path to your PNG image
 enemy_icon = pygame.transform.scale(enemy_icon, (enemy_size, enemy_size))
 
 # Set up enemy position
@@ -64,6 +73,7 @@ lives = 3
 # Score
 score = 0
 font = pygame.font.Font(None, 36)
+
 
 # High score
 high_score_file = "highscore.txt"
@@ -88,10 +98,6 @@ bullet_speed = 15
 # Initialize Pygame mixer
 pygame.mixer.init()
 
-# Load and play the MP3 file
-mp3_file_path = "C:\\Users\\elena_0\\Desktop\\Joc Python\\music.wav"  # Replace with the path to your MP3 file
-pygame.mixer.music.load(mp3_file_path)
-pygame.mixer.music.play(-1)  # -1 means loop indefinitely
 
 # Main game loop
 clock = pygame.time.Clock()
